@@ -1,0 +1,103 @@
+record(bo, ${secsub}:${disdevidx}:Rst) {
+    field(DESC, "Reset Faults")
+    field(DTYP, "Soft Channel")
+    field(HIGH, "1")
+    field(OUT, "${secsub}:${disdevidx}:Setup.B4 PP")
+    field(ZNAM, "PulseOFF")
+    field(ONAM, "PulseON")
+}
+
+### Write functions
+
+## Address 2
+
+record(mbboDirect, "${secsub}:${disdevidx}:Setup") {
+    field(DESC, "Setup commands")
+    field(DTYP, "asynUInt32Digital")
+    field(OUT,  "@asynMask(${write}, 2, 0xFFFF, 1000)MODBUS_DATA")
+}
+
+## Address 0
+
+record(longout, "${secsub}:${disdevidx}:PosXS") {
+    field(DESC, "Set X value")
+    field(LOPR, "0")
+    field(HOPR, "10000")
+    field(DTYP, "asynUInt32Digital")
+    field(OUT,  "@asynMask(${write}, 0, 0xFFFF, 1000)MODBUS_DATA")
+}
+
+## Address 1
+
+record(longout, "${secsub}:${disdevidx}:PosYS") {
+    field(DESC, "Set Y value")
+    field(LOPR, "0")
+    field(HOPR, "10000")
+    field(DTYP, "asynUInt32Digital")
+    field(OUT,  "@asynMask(${write}, 1, 0xFFFF, 1000)MODBUS_DATA")
+}
+
+# Address 9
+
+record(longout, "${secsub}:${disdevidx}:GainS") {
+    field(DESC, "Set gain value")
+    field(LOPR, "1000")
+    field(HOPR, "2000")
+    field(DTYP, "asynUInt32Digital")
+    field(OUT,  "@asynMask(${write}, 9, 0xFFFF, 1000)MODBUS_DATA")
+}
+
+### Read functions
+
+## Address 100
+
+record(longin, "${secsub}:${disdevidx}:PosXR") {
+    field(DESC, "Read X value")
+    field(SCAN, "I/O Intr")
+    field(LOPR, "0")
+    field(HOPR, "10000")
+    field(DTYP, "asynUInt32Digital")
+    field(INP,  "@asynMask(${read}, 0, 0xFFFF, 1000)MODBUS_DATA")
+}
+
+## Address 101
+
+record(longin, "${secsub}:${disdevidx}:PosYR") {
+    field(DESC, "Read Y value")
+    field(SCAN, "I/O Intr")
+    field(LOPR, "0")
+    field(HOPR, "10000")
+    field(DTYP, "asynUInt32Digital")
+    field(INP,  "@asynMask(${read}, 1, 0xFFFF, 1000)MODBUS_DATA")
+}
+
+## Address 102
+
+record(longin, "${secsub}:${disdevidx}:PosXDiscrR") {
+    field(DESC, "X discriminator readout")
+    field(SCAN, "I/O Intr")
+    field(LOPR, "0")
+    field(HOPR, "10000")
+    field(DTYP, "asynUInt32Digital")
+    field(INP,  "@asynMask(${read}, 2, 0xFFFF, 1000)MODBUS_DATA")
+}
+
+## Address 103
+
+record(longin, "${secsub}:${disdevidx}:PosYDiscrR") {
+    field(DESC, "Y discriminator readout")
+    field(SCAN, "I/O Intr")
+    field(LOPR, "0")
+    field(HOPR, "10000")
+    field(DTYP, "asynUInt32Digital")
+    field(INP,  "@asynMask(${read}, 3, 0xFFFF, 1000)MODBUS_DATA")
+}
+
+## Address 104
+
+record(mbbiDirect, "${secsub}:${disdevidx}:Fault") {
+    field(DESC, "Default status")
+    field(SCAN, "I/O Intr")
+    field(DTYP, "asynUInt32Digital")
+    field(INP,  "@asynMask(${read}, 4, 0xFFFF, 1000)MODBUS_DATA")
+}
