@@ -1,5 +1,1 @@
-
-e3-sairemai4s  
-======
-ESS Site-specific EPICS module : sairemai4s
-
+This module is obsolete. See https://gitlab.esss.lu.se/icshwi/e3-sairem
